@@ -1,0 +1,11 @@
+ from typing import List
+
+
+def nextGreatestLetter(letters: List[str], target: str) -> str:
+    letters.sort()
+    left = 0
+    while(left < len(letters)):
+        if(letters[left] > target):
+            return letters[left]
+        left += 1
+    return letters[0]
