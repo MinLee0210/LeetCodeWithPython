@@ -1,4 +1,5 @@
- from typing import List
+
+from ast import List
 
 
 def nextGreatestLetter(letters: List[str], target: str) -> str:
@@ -9,3 +10,17 @@ def nextGreatestLetter(letters: List[str], target: str) -> str:
             return letters[left]
         left += 1
     return letters[0]
+
+# def nextGreatestLetter(self, letters: List[str], target: str) -> str:
+#         low, high = 0, len(letters) - 1
+#         while low < high:
+#             mid = (low+high) // 2
+#             if letters[mid] <= target:
+#                 low = mid + 1
+#             else:
+#                 high = mid
+#         return letters[low] if letters[low] > target else letters[0]
+
+# Note: when using binary search, eventually, mid and left will reach to the state 
+#         of identical, in other words, the acceleration of mid and left being equal 
+#         will be faster
