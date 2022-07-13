@@ -1,24 +1,20 @@
-
 def minSubArrayLen(target, nums):
-    result = []
-    if target in nums:
-        result.append(nums.index(target))
-    else:
-        sum = 0
-        for i in range(0, len(nums)):
-            left = i
-            right = len(nums) - 1
-            while(left <= right):
-                mid = left + (right - left)//2
-                if sum <= target:
-                    sum += nums[mid]
-                    left = mid + 1
-                else:
-                    right = mid - 1
-                    
-    return len(result)
-
+    left = 0
+    right = len(nums) + 1
+    temp = 0
+    
+    for i in range(len(nums)):
+        temp += nums[i]
+        # When the temp number is larger the target, we resize the list and decrease the sum
+        while temp >= target:
+            # We will reduce the upper-bound
+            right = min(i - left + 1, right)
+            temp -= nums[left]
+            left += 1
+            
+    return 0 if right == len(nums) else right 
+        
+target = 7
 nums = [2,3,1,2,4,3]
-target = 3
-print(minSubArrayLen(target, nums))
 
+print(minSubArrayLen(target, nums))
