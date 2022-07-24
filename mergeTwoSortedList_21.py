@@ -7,8 +7,8 @@ class ListNode:
         self.next = next
         
 def merge(list1:Optional[ListNode], list2:Optional[ListNode]) -> Optional[ListNode]:
-    if list1 is None: return
-    if list2 is None: return 
+    if list1 is None: return list1
+    if list2 is None: return list2
     
     head = ListNode()
     tail = ListNode()
@@ -21,17 +21,18 @@ def merge(list1:Optional[ListNode], list2:Optional[ListNode]) -> Optional[ListNo
         head = tail = list2
         list2 = list2.next
     
-    # Start comparing
-    while (list1.next != None) or (list2.next != None):
+    # Start comparing and add the value the end of the list, in this case, assign the tail-parameter.
+    while (list1 != None) and (list2 != None):
         if list1.val < list2.val:
-            head.next = list1
+            tail.next = list1
             list1 = list1.next
         else:
-            head.next = list2
+            tail.next = list2
             list2 = list2.next
-            
+        tail = tail.next
+        
     # If there were a list finish sooner, we start to complete the merge list with the lefted.
-    if list1 != None: 
+    if list1 is not None: 
         tail.next = list1
     else:
         tail.next = list2 
